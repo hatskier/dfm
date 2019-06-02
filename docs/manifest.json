@@ -1,0 +1,10 @@
+{
+  "name": "DFM",
+  "start_url": "./index.html",
+  "description": "Decentralized finance manager",
+  "icons": [{
+    "src": "https://s3.amazonaws.com/blockstack.hatskier/logo.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
