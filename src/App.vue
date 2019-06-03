@@ -9,7 +9,7 @@
     </div>
 
     <div v-if="Blockchain.pendingAuth">
-      <h4 class="centered">Authentication in progress...</h4>
+      <h4 id="loading-header" class="centered">Loading...</h4>
     </div>
     
   </div>
@@ -39,6 +39,10 @@ export default {
 <style lang="scss">
   @import "~material-design-lite/material.css";
   @import '~material-icons/iconfont/material-icons.css';
+
+  #loading-header {
+    margin-top: 30px;
+  }
 
   .material-icons {
     color: #1c587a;

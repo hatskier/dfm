@@ -6,6 +6,7 @@
       v-bind:dataModel="dataModel"
       v-bind:addable="true"
       v-bind:editable="true"
+      v-bind:removable="true"
       v-bind:upsert="state.upsertContact.bind(state)"
       v-bind:remove="state.removeContact.bind(state)"
     />
@@ -17,13 +18,6 @@
 import EditableListTemplate from '../EditableListTemplate'
 import State from '../../modules/state'
 import Utils from '../../modules/utils'
-
-// TODO remove it
-State.upsertContact({
-        name: 'Random' + Math.round(Math.random() * 100000),
-        email: 'email@gmail.com',
-        phone: Math.round(Math.random() * 1000000000).toString()
-      })
 
 export default {
   name: 'Contacts',
@@ -48,17 +42,6 @@ export default {
         return el
       })
     }
-  },
-
-  methods: {
-    // TODO remove
-    // addNewRandomContact() {
-    //   State.addContact({
-    //     name: 'Random' + Math.round(Math.random() * 100000),
-    //     email: 'email@gmail.com',
-    //     phone: Math.round(Math.random() * 1000000000).toString()
-    //   })
-    // }
   },
 
   components: {

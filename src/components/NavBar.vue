@@ -21,9 +21,21 @@
           <div class="mdl-layout-spacer"></div>
 
           <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <div class="mdl-layout-spacer"></div>
+            <div class='username'>
+              Hi, {{ userName }}<br>
+            </div>
 
-            Hi, {{ userName }}
+            <div class="user-and-state">
+              
+              <span class="sync-status">
+                <i class="material-icons">{{ syncIcon }}</i>
+              </span>
+              <br>
+              <span class="sync-status">
+                {{ state.syncStatus }}
+              </span>
+              
+            </div>
 
             <a
               class="mdl-navigation__link"
@@ -42,17 +54,31 @@
 <script>
 import NavBarLink from './NavBarLink.vue';
 import Blockchain from '../modules/blockchain'
+import State from '../modules/state'
 
 export default {
   name: "NavBar",
   data() {
+    State.loadStateFromBlockchain()
+
     return {
-      userName: Blockchain.getUserName()
+      userName: Blockchain.getUserName(),
+      state: State
     }
   },
   computed: {
     path() {
       return this.$route.fullPath
+    },
+    syncIcon() {
+      switch (this.state.syncStatus) {
+        case 'Synced':
+          return 'cloud_done'
+        case 'Syncing failed':
+          return 'cloud_off'
+        default:
+          return 'cloud_upload'
+      }
     }
   },
   components: {
@@ -67,6 +93,22 @@ export default {
 </script>
 
 <style scoped>
+.username {
+  margin-right: 30px;
+}
+
+.sync-status {
+  font-size: 10px;
+}
+
+.material-icons {
+  color: white;
+}
+
+.user-and-state {
+  text-align: center;
+}
+
 a {
   cursor: pointer;
   text-decoration: none;

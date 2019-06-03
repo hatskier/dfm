@@ -1,10 +1,28 @@
-import State from './state'
 import blockstack from 'blockstack'
 
-// This module allows to read and write data to blockstack blockchain
+const FILENAMES = {
+  contacts: 'dfmapp_contacts.json',
+  debts: 'dfmapp_contacts.json'
+}
 
 const appConfig = new blockstack.AppConfig(['store_write', 'publish_data'])
 const userSession = new blockstack.UserSession({appConfig})
+
+async function saveObjectToFile(obj, filename, opts={ encrypt: true }) {
+  await userSession.putFile(filename, JSON.stringify(obj), opts)
+}
+
+async function readObjFromFile(filename, opts={ decrypt: true }) {
+  console.log('Reading the file: ' + filename)
+  const content = await userSession.getFile(filename, opts)
+  try {
+    console.log('Got content: ' + content)
+    return JSON.parse(content)
+  } catch (e) {
+    console.error(e)
+    return null
+  }
+}
 
 export default {
   pendingAuth: false,
@@ -43,7 +61,19 @@ export default {
     location.reload()
   },
 
-  async addDebt() {
-    State.addDebt()
-  }
+  async getContacts() {
+    return await readObjFromFile(FILENAMES.contacts)
+  },
+
+  async getDebts() {
+    return await readObjFromFile(FILENAMES.debts)
+  },
+
+  async saveContacts(contacts) {
+    await saveObjectToFile(contacts, FILENAMES.contacts)
+  },
+
+  async saveDebts(debts) {
+    await saveObjectToFile(debts, FILENAMES.debts)
+  },
 }

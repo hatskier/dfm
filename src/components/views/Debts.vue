@@ -35,6 +35,14 @@
         color="#1A8FE2"
         suffix="pos"/>
 
+      <Card
+        id="debtslength"
+        :value="debtsLength"
+        label="Number of debts"
+        icon="list"
+        color="#1A8FE2"
+        suffix="pos"/>
+
     </div>
 
     <EditableListTemplate
@@ -47,13 +55,6 @@
       v-bind:remove="state.removeDebt.bind(state)"
     />
 
-    <!-- TODO remove this button -->
-    <!-- <button
-      type="button"
-      v-on:click="addNewRandomContact"
-    >
-      Add new random contact
-    </button> -->
   </div>
 </template>
 

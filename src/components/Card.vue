@@ -4,7 +4,7 @@
         <!--<p>{{label}}</p>-->
     <!--</div>-->
 
-  <div class="mdl-cell mdl-cell--3-col">
+  <div class="mdl-cell mdl-cell--2-col">
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -65,7 +65,7 @@ div {
 
 .card {
     /* margin: 30px; */
-    width: 200px;
+    /* width: 200px; */
     border-radius: 3px;
     background-color: #fff;
     margin-bottom: 30px;
