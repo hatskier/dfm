@@ -2,7 +2,7 @@ import blockstack from 'blockstack'
 
 const FILENAMES = {
   contacts: 'dfmapp_contacts.json',
-  debts: 'dfmapp_contacts.json'
+  debts: 'dfmapp_debts.json'
 }
 
 const appConfig = new blockstack.AppConfig(['store_write', 'publish_data'])
