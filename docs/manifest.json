@@ -1,6 +1,6 @@
 {
   "name": "DFM",
-  "start_url": "./index.html",
+  "start_url": "https://dfmapp.com",
   "description": "Decentralized finance manager",
   "icons": [{
     "src": "https://s3.amazonaws.com/blockstack.hatskier/logo.png",
