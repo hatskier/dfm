@@ -9,20 +9,21 @@
           <!-- <span class="mdl-layout-title"><img class="logo" src="../../public/logo.svg" height="48px"/>Homelink</span> -->
           <span class="mdl-layout-title"><img class="logo" src="../assets/logo.png"></span>
           <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
+          
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <NavBarLink name="debts" defaultRoute/>
             <NavBarLink name="contacts"/>
             <!-- <NavBarLink name="dashboard" defaultRoute/> -->
             <NavBarLink name="shop-lists"/>
+          </nav>
 
-            <a
-              class="mdl-navigation__link"
-              v-on:click="signIn"
-            >
-              Sign in
-            </a>
+          <div class="mdl-layout-spacer"></div>
+
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <div class="mdl-layout-spacer"></div>
+
+            Hi, {{ userName }}
 
             <a
               class="mdl-navigation__link"
@@ -40,14 +41,13 @@
 
 <script>
 import NavBarLink from './NavBarLink.vue';
-import blockstack from 'blockstack'
+import Blockchain from '../modules/blockchain'
 
 export default {
   name: "NavBar",
   data() {
-    const appConfig = new blockstack.AppConfig(['store_write', 'publish_data'])
     return {
-      userSession: new blockstack.UserSession({appConfig})
+      userName: Blockchain.getUserName()
     }
   },
   computed: {
@@ -59,11 +59,8 @@ export default {
     NavBarLink
   },
   methods: {
-    signIn() {
-      this.userSession.redirectToSignIn()
-    },
     signOut() {
-      this.userSession.signOut()
+      Blockchain.signOut()
     }
   }
 };
@@ -72,6 +69,7 @@ export default {
 <style scoped>
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logo {

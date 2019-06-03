@@ -6,6 +6,7 @@ let State = {
   // Fields
   contacts: {},
   debts: {},
+  session: null,
 
 
   // Methods

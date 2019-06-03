@@ -1,17 +1,37 @@
 <template>
   <div id="app">
-    <NavBar/>
-    <router-view class="view"></router-view>
+    <div v-if="!Blockchain.pendingAuth && Blockchain.isUserSignedIn()">
+      <NavBar/>
+      <router-view class="view"></router-view>
+    </div>
+    <div v-if="!Blockchain.pendingAuth && !Blockchain.isUserSignedIn()">
+      <SignIn/>
+    </div>
+
+    <div v-if="Blockchain.pendingAuth">
+      <h4 class="centered">Authentication in progress...</h4>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar' 
+import NavBar from './components/NavBar'
+import SignIn from './components/views/SignIn'
+import Blockchain from './modules/blockchain'
+
+Blockchain.checkAuth()
 
 export default {
   name: 'app',
+  data() {
+    return {
+      Blockchain
+    }
+  },
   components: {
-    NavBar
+    NavBar,
+    SignIn
   }
 }
 </script>
